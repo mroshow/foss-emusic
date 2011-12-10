@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Droidian eMusic - a free eMusic app for Android - 
+    This application is not associated with eMusic.com in any way.  
+    
+    Copyright (C) 2010 Jack Deslippe
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
+    android:background="@drawable/back1"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/icon"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:onClick="logoPressed"
+            android:src="@drawable/emdtop"
+            android:paddingTop="3sp"
+        />
+
+    </LinearLayout>
+
+    <TextView  
+        android:id="@+id/theader"
+        android:textStyle="bold"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:text=""
+        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="6sp"
+    />
+
+    <TextView  
+        android:id="@+id/tdates"
+        android:textStyle="bold"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:text=""
+        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="6sp"
+    />
+
+    <TextView  
+        android:id="@+id/tdecades"
+        android:textStyle="bold"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:text=""
+        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="6sp"
+    />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+
+        <TextView  
+            android:paddingLeft="6sp"
+            android:id="@+id/trating"
+            android:textStyle="bold"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/rating"
+            android:paddingRight="4sp"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+        />
+
+        <RatingBar
+            android:id="@+id/rbar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4sp"
+        />
+
+    </LinearLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_weight="0.5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <WebView  
+            android:id="@+id/blurb"
+            android:layout_width="fill_parent" 
+            android:layout_height="fill_parent" 
+            android:text=""
+            android:textSize="14sp"
+        />
+
+    </ScrollView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backbottom"
+        android:paddingTop="4sp"
+        android:paddingRight="2sp"
+        android:gravity="right"
+        >
+
+        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/albbutton"
+            android:onClick="albumsButtonPressed"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            android:src="@drawable/albums"
+        />
+
+        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relbutton"
+            android:onClick="relatedButtonPressed"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:focusable="true"
+            android:clickable="true"
+            android:src="@drawable/similar"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>

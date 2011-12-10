@@ -1,0 +1,90 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--
+  <CheckBoxPreference
+    android:key="checkbox"
+    android:title="Checkbox Preference"
+    android:summary="Check it on, check it off" /> -->
+  <ListPreference
+    android:key="localelist"
+    android:title="Region"
+    android:summary="Set your region to see proper results for your country." 
+    android:entries="@array/localetext"
+    android:entryValues="@array/localevalues"
+    android:dialogTitle="Choose a region." />
+  <PreferenceCategory
+    android:title="Appearance">
+    <ListPreference
+      android:key="textsizelist"
+      android:title="Textsize"
+      android:summary="Change the size of text in descriptions."
+      android:entries="@array/sizetext"
+      android:entryValues="@array/sizevalues"
+      android:dialogTitle="Choose a text size." />
+    <ListPreference
+      android:key="listsizelist"
+      android:title="Results Per Page"
+      android:summary="Change the number of results to show per page in browse and search results."
+      android:entries="@array/listsizetext"
+      android:entryValues="@array/listsizevalues"
+      android:dialogTitle="Choose number of albums per page." />
+    <ListPreference
+      android:key="listsortlist"
+      android:title="Default List Sort"
+      android:summary="Choose default results sorting between most recent and most popular."
+      android:entries="@array/listsorttext"
+      android:entryValues="@array/listsortvalues"
+      android:dialogTitle="Choose default sort for browse and search results." />
+  </PreferenceCategory>
+  <PreferenceCategory
+    android:title="Filename Preferences">
+    <ListPreference
+      android:key="filenamelist"
+      android:title="Filename Scheme"
+      android:summary="Change the downloaded file naming scheme."
+      android:entries="@array/filenametext"
+      android:entryValues="@array/filenamevalues"
+      android:dialogTitle="Choose a naming scheme." />
+    <EditTextPreference
+      android:key="filenameseparator"
+      android:title="Filename Separator"
+      android:defaultValue=" - "
+      android:summary="Enter the separator to use between artist, album, track # and title in the filename.  Default is ' - '"
+      android:dialogTitle="Enter a filename separator. Include desired spaces explicitly." />
+  </PreferenceCategory>
+  <PreferenceCategory
+    android:title="Directory Preferences">
+    <ListPreference
+      android:key="filedirlist"
+      android:title="Music File Directory"
+      android:summary="Change the downloaded music file directory."
+      android:entries="@array/filedirtext"
+      android:entryValues="@array/filedirvalues"
+      android:dialogTitle="Choose directory (relative to /sdcard or /emmc)." />
+    <ListPreference
+      android:key="bookdirlist"
+      android:title="Audiobook File Directory"
+      android:summary="Change the downloaded audiobook file directory."
+      android:entries="@array/bookdirtext"
+      android:entryValues="@array/bookdirvalues"
+      android:dialogTitle="Choose directory (relative to /sdcard or /emmc)." />
+    <EditTextPreference
+      android:key="customdirname"
+      android:title="Custom Directory"
+      android:defaultValue="eMusic"
+      android:summary="Specify the '/Custom' directory name to use in the above settings. If the directory doesn't exist, it will be created."
+      android:dialogTitle="Enter a the custom directory name." />
+  </PreferenceCategory>
+  <PreferenceCategory
+    android:title="Temporary Files">
+      <Preference
+        android:key="clearcache"
+        android:title="Clear Cache"
+        android:summary="Clear saved album art and chart cache." />
+      <Preference
+        android:key="clearhistory"
+        android:title="Clear History"
+        android:summary="Clear download history and .emx cache." />
+  </PreferenceCategory>
+
+</PreferenceScreen>
+

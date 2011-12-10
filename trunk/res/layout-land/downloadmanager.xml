@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Droidian eMusic - a free eMusic app for Android - 
+    This application is not associated with eMusic.com in any way.  
+    
+    Copyright (C) 2010 Jack Deslippe
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
+    android:background="@drawable/back1"
+    >
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/backbottom"
+    >
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/icon"
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:paddingTop="4sp"
+                android:paddingRight="3sp"
+                android:paddingLeft="3sp"
+                android:src="@drawable/emdtop"
+                />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pbar2"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:paddingBottom="0sp"
+    android:paddingTop="4sp"
+    android:visibility="invisible"
+    >
+<ProgressBar
+    android:textStyle="bold"
+    android:indeterminate="true"
+    android:indeterminateOnly="true"
+    android:paddingLeft="4sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="?android:attr/progressBarStyleSmall"
+    android:adjustViewBounds="true"
+    android:gravity="bottom"
+   />
+<TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:paddingBottom="0sp"
+    android:paddingLeft="2sp"
+    android:text="@string/loading_pbar"
+    android:textSize="12sp"
+    android:textColor="#FFFFFF"
+/>
+</LinearLayout>
+
+
+</LinearLayout>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="0sp"
+    android:paddingBottom="0sp"
+    >
+
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/icondownloader"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/emusicjsmall"
+                />
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="2sp"
+    >
+
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/button"
+                android:text="@string/load_previous_emx_file"
+                android:onClick="btnPressed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    >
+
+<ProgressBar
+    android:id="@+id/pbar"
+    android:textStyle="bold"
+    android:max="100"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:indeterminate="false"
+    android:indeterminateOnly="false"
+    android:progress="0"
+    android:paddingLeft="4sp"
+    android:paddingBottom="3sp"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:minHeight="36sp" 
+    android:maxHeight="36sp" 
+    android:layout_weight="0.3"
+   />
+
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/pausebutton"
+		android:text="@string/pause"
+                android:onClick="pausePressed"
+                android:layout_weight="0.7"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+<TextView  
+    android:id="@+id/tbox"
+    android:textStyle="bold"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/nothing_currently_downloading"
+    android:paddingLeft="3sp"
+    />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+		android:paddingTop="2sp"
+    android:layout_height="wrap_content"
+    >
+
+<TextView  
+    android:id="@+id/tboxinfo"
+    android:textStyle="bold"
+    android:layout_width="fill_parent" 
+    android:layout_weight="0.2"
+    android:layout_height="wrap_content" 
+    android:paddingLeft="3sp"
+    android:text="@string/no_emx_loaded"
+    />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_weight="0.3"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    >
+
+
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/buttoncover"
+                android:onClick="coverPressed"
+                android:layout_width="105dp" 
+                android:layout_height="105dp"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:src="@drawable/iconbutton"/>
+
+</LinearLayout>
+</LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>
