@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Droidian eMusic - a free eMusic app for Android - 
+    https://launchpad.net/emusicdownloader - based loosely on the
+    eMusicJ dekstop app (http://www.kallisti.net.nz/EMusicJ/HomePage).
+    This application is not associated with eMusic.com in any way.  
+    
+    Copyright (C) 2010 Jack Deslippe
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-->
+
+<resources>
+    <!-- About Text -->
+    <string name="about_text">Update Nov. 21. eMusic.com update their website and broke downlaods in this app. Downloads have been disabled until I can reach out to eMusic and get a fix.\n\nThe Droidian eMusic application allows users to browse/search the eMusic.com collection and contains a download manager enabling current eMusic.com subcribers to download purchased albums/audiobooks/tracks directly to their Android phone.\n\nIf you are outside the US and often get the message that albums are not available in your region, please set your country code in the preferences.\n\nThis app is not in any way officially associated with eMusic.com. It is developed by one developer. If you like it, use it often, and want to show your appreciation, please consider buying the supporter version of the application!\n\nTo use Droidian eMusic, you should search or browse for an album/audiobook you want to download within the app. Press on the buy button on an album page to open a webview window for that album, sign in to your eMusic account (allow the webview to save your login credentials) and then press on a download link to download the album or track of interest using the included download manager. Note, you must be an eMusic.com subscriber with sufficient credits for any purchase you try to make. Downloaded tracks are automatically added to the Android music player library.\n\nTracks remain in the download manager until you clear them by pressing menu and selecting \"Clear Completed\". Note that downloads do expire after 24 hours - requiring you to start the download process again by repurchasing (unfortunately eMusic no longer allows you to redownload an album for free).\n\nWhat to do if your download fails?\n\nLong press on the track in the download manager list that has failed and select \"retry\" then press the download button at the top to restart the downloads. If you accidentally cleared the downloads, press the Menu button in the download manager and then press \".emx files\" to reload your purchased album. If that fails, return to the \"emx files\" menu and press and hold on the .emx file for your album, select \"send\" and email the file and the album name to jdeslipandroid@gmail.com.\n\nIf we cannot resolve your issue, you must contact eMusic customer service at http://www.emusic.com/contact/index.html to ask for your credits to be restored.</string>
+
+    <!-- Strings For WebWindow -->
+    <string name="please_wait_for_page_to_refresh">Please wait for page to refresh before attempting another download.</string>
+
+    <!-- Strings For Single Album/Book/Artist Pages -->
+    <string name="audio_sample">Audio Sample</string>
+    <string name="cant_get_sample_">Can\'t get sample </string>
+    <string name="no_storage_to_buffer">No storage available to buffer - sdcard and emmc missing.</string>
+    <string name="buffering">Buffering...</string>
+    <string name="could_not_get_an_address_for_sample">Sample not available for your location. Please set your proper region in the preferences.</string>
+    <string name="getting_sample_loation">Getting Sample Loation...</string>
+    <string name="couldnt_get_album_info">Couldn\'t get album info.\nEither no network connection or API is down.</string>
+    <string name="couldnt_get_artist_info">Couldn\'t get artist info.\nEither no network connection or API is down.</string>
+    <string name="no_sample_available">No Sample Available</string>
+    <string name="couldnt_get_book_info">Couldn\'t get book info.\nEither no network connection or API is down.</string>
+    <string name="artists_similar_to">Artists similar to</string>
+    <string name="born">Born:</string>
+    <string name="death"> Death:</string>
+    <string name="active_decades">Active Decades:</string>
+    <string name="mb_3g_wifi_suggested_">MB\n\n(3G or Wifi Suggested)</string>
+    <string name="now_playing">Now Playing -</string>
+    <string name="_3g_wifi_suggested">\n\n(3G/WiFi Suggested)</string>
+    <string name="similar">Similar</string>
+    <string name="rating">Rating:</string>
+    <string name="albums">Albums</string>
+    <string name="reviews">Reviews</string>
+    <string name="sample">Sample</string>
+    <string name="buy_at">Buy at eMusic.com</string>
+    <string name="buy_tracks_or_album">Buy Tracks/Album</string>
+    <string name="album_sample">Playing all samples in order. To play an individual sample, hit back and then press on the track name.</string>
+
+    <!-- Strings For Search/Search List Pages -->
+    <string name="search_failed">Search failed - likely no network connection or API is down or yielding no results. Please try the request again.</string>
+    <string name="no_reviews_for_this_album">\nNo Reviews for this album</string>
+    <string name="searching">Searching</string>
+    <string name="added">Added</string>
+    <string name="loading">Loading. Please wait...</string>
+    <string name="previous">previous</string>
+    <string name="next">next</string>
+    <string name="search">Search</string>
+    <string name="search_for">Search for:</string>
+    <string name="showing">Showing</string>
+    <string name="through">to</string>
+    <string name="of">of</string>
+
+    <!-- Strings For Download Manager -->
+    <string name="load_previous_emx_file">Continue Previous Download</string>
+    <string name="cant_parse">Can\'t parse file!  Not in .emx format.  Try logging-out and re-logging-in on the webview page and make sure you have enough credits for the purchase.</string>
+    <string name="checking_file_n">Parsing Album Info. Please wait - checking file</string>
+    <string name="checking_file_1_of">Parsing Album Info. Please wait - checking file 1 of</string>
+    <string name="pick_a_file">Pick a file for EMD. Then press \'Open\'.</string>
+    <string name="downloading_dot">Downloading...</string>
+    <string name="about_the_download_manager">About the Download Manager</string>
+    <string name="canceling">Canceling...</string>
+    <string name="cancel_current_downloads">Cancel Current Downloads</string>
+    <string name="really_quit">Really Quit?  This will end all current and pending downloads. Press the Home button instead to keep running in the background.</string>
+    <string name="already_connected">Already Connected</string>
+    <string name="no_storage">There doesn\'t appear to be an sdcard mounted at /sdcard or internal storage at /emmc.  \n\nDroidian eMusic has no location to save files.  This is one sad Robot.</string>
+    <string name="no_storage_available">No Storage Available</string>
+    <string name="preferences_changed">You need to pause and restart the downloads for changes in filename/directory preferences to take effect.</string>
+    <string name="loading_emx_please_wait_">Loading download info. Please Wait.</string>
+    <string name="parsing_album_info_please_wait_">Parsing Album Info. Please wait.</string>
+    <string name="warning">WARNING:</string>
+    <string name="no_emx_loaded">No current download - \nPress the menu button and select \'About\' for usage info.</string>
+    <string name="pause">Pause</string>
+    <string name="unpause">Restart</string>
+    <string name="history">History</string>
+    <string name="clear_history"> albums (.emx files) saved in history.\n\nClear?</string>
+    <string name="deleted_download_emx_history">Deleted download (.emx) history</string>
+    <string name="max_100_part1">The Download Manager curently can only parse 100 tracks per album. Your download contains </string>
+    <string name="max_100_part2"> tracks. Only the first 100 will be added. Please contact the developer if you see this message.</string>
+    <string name="file_manager_missing">File-manager missing.</string>
+    <string name="completed">Completed</string>
+    <string name="remaining">Remaining</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="incomplete_waiting_to_retry">Incomplete/Waiting to Retry</string>
+    <string name="failed">Failed</string>
+    <string name="previously_downloaded">Previously Downloaded</string>
+    <string name="missing_expired">Missing/Expired</string>
+    <string name="status">Status </string>
+    <string name="restart">Restart?</string>
+    <string name="begin_downloading_files">Begin Downloading Files</string>
+    <string name="nothing_currently_downloading">Nothing currently downloading.</string>
+    <string name="using_cache">Using cached .emx file.\n\nSelect \"Clear All\" from the menu if links are missing/expired.</string>
+    <string name="beginning">Beginning</string>
+    <string name="downloading">Downloading</string>
+    <string name="canceled_during">Canceled during</string>
+    <string name="finished">Finished</string>
+    <string name="failed_to_download">Failed to download</string>
+    <string name="_will_automatically_try_again_after_all_downloads_finish_">\nWill automatically try again after all downloads finish.</string>
+    <string name="_to_try_again_manually_press_restart_after_all_downloads_finish_">\nTo try again, manually press restart after all downloads finish.</string>
+
+    <!-- Strings For Main Window -->
+    <string name="failed_to_update_chart_info">Failed to update chart info. Either no network connection or API down.</string>
+    <string name="cleared_cache">Cleared chart and album art cache.</string>
+    <string name="database_locked">Database is currently locked. Please try again in a few seconds.</string>
+    <string name="about_droidian_emusic">About Droidian eMusic</string>
+    <string name="top_books">Top Books</string>
+    <string name="top_artists">Top Artists</string>
+    <string name="top_albums">Top Albums</string>
+    <string name="browse_emusic_com">Browse Genres</string>
+    <string name="browse">Browse</string>
+    <string name="saved_items">Saved Items</string>
+    <string name="free_daily_download">Free Daily Download</string>
+    <string name="updating_charts"> updating charts</string>
+    <string name="donate">Support Developer</string>
+    <string name="signup">Sign Up</string>
+
+    <!-- Strings For Downloader -->
+    <string name="waiting_10_seconds">Waiting 10 seconds to retry new or incomplete tracks</string>
+    <string name="not_finished_yet">Not finished yet, so entering another download attempt</string>
+    <string name="downloads_killed_noti">OS Killed Downloader - Restart.</string>
+    <string name="downloads_killed">EMusicDroid downloads were killed by the Android OS (probably due to low memory on the device).  Please restart manually.</string>
+
+    <!-- Other Strings For App -->
+    <string name="app_name">Droidian eMusic</string>
+    <string name="notif_short">Droidian eMusic</string>
+    <string name="notif_detailed">Droidian eMusic</string>
+    <string name="quit">Quit</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading_pbar">\ loading</string>
+    <string name="about">About</string>
+    <string name="clear_cache">Clear Cache/History</string>
+    <string name="clear_cache_art">Clear Saved Art</string>
+    <string name="preferences">Preferences</string>
+
+    <!-- Strings For OI-Filemanager -->
+    <string name="menu_new_folder">New Folder</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_move">Move</string>
+    <string name="menu_copy">Copy</string>
+    <string name="create_new_folder">Create new folder</string>
+    <string name="folder_name">Folder name</string>
+    <string name="file_name">Folder name</string>
+    <string name="this_folder_is_empty">This folder is empty.</string>
+    <string name="really_delete">Do you really want to delete %s?</string>
+    <string name="file_deleted">File deleted.</string>
+    <string name="folder_deleted">Folder deleted.</string>
+    <string name="file_renamed">File renamed.</string>
+    <string name="folder_renamed">Folder renamed.</string>
+    <string name="file_moved">File moved.</string>
+    <string name="folder_moved">Folder moved.</string>
+    <string name="file_copied">File copied.</string>
+    <string name="move_title">Select folder to move to</string>
+    <string name="move_button">Move here</string>
+    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_button">Copy here</string>
+    <string name="copied_file_name">Copy of %s</string>
+    <string name="error_creating_new_folder">Could not create new folder.</string>
+    <string name="error_deleting_file">Could not delete file.</string>
+    <string name="error_folder_not_empty">Folder is not empty.</string>
+    <string name="error_renaming_file">Could not rename file.</string>
+    <string name="error_renaming_folder">Could not rename folder.</string>
+    <string name="error_moving_file">Could not move file.</string>
+    <string name="error_moving_folder">Could not move folder.</string>
+    <string name="error_copying_file">Could not copy file.</string>
+    <string name="error_file_does_not_exists">File does not exist.</string>
+    <string name="application_not_available">Application not available</string>
+    <string name="menu_send">Send</string>
+    <string name="send_not_available">No application available for sending.</string>
+
+</resources>

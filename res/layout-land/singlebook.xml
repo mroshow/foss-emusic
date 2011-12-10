@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Droidian eMusic - a free eMusic app for Android - 
+    This application is not associated with eMusic.com in any way.  
+    
+    Copyright (C) 2010 Jack Deslippe
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
+    android:background="@drawable/back1"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/backbottom"
+            >
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/icon"
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:paddingTop="4sp"
+                android:paddingRight="3sp"
+                android:paddingLeft="3sp"
+                android:onClick="logoPressed"
+                android:src="@drawable/emdtop"
+            />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="bottom"
+                >
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical|center"
+                    >
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/samplebutton"
+                        android:onClick="sampleButtonPressed"
+                        android:layout_width="wrap_content" 
+                        android:layout_height="wrap_content" 
+                        android:src="@drawable/sample"
+                        android:focusable="true"
+                        android:clickable="true"
+                    />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical|center"
+                    >
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/reviewsbutton"
+                        android:onClick="reviewsButtonPressed"
+                        android:layout_width="wrap_content" 
+                        android:layout_height="wrap_content" 
+                        android:src="@drawable/reviews"
+                        android:focusable="true"
+                        android:clickable="true"
+                    />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical|center"
+                    >
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/albbutton"
+                        android:onClick="buyButtonPressed"
+                        android:layout_width="wrap_content" 
+                        android:layout_height="wrap_content" 
+                        android:src="@drawable/buy"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:visibility="invisible" 
+                    />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            >
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="3sp"
+                android:paddingLeft="6sp"
+                android:paddingRight="6sp"
+                android:paddingBottom="4sp"
+                >
+
+                <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/albumart"
+                    android:layout_width="136sp" 
+                    android:layout_height="136sp"
+                    android:scaleType="fitStart"
+                    android:adjustViewBounds="true"
+                    android:paddingRight="12sp"
+                    android:paddingTop="5sp"
+                    android:src="@drawable/albumloading"
+                />
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView  
+                        android:id="@+id/tname"
+                        android:textStyle="bold"
+                        android:layout_width="fill_parent" 
+                        android:layout_height="wrap_content" 
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                    />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/llauthor"
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="authorButtonPressed"
+                        >
+
+                        <TextView  
+                            android:id="@+id/tauthor"
+                            android:textStyle="bold"
+                            android:layout_width="fill_parent" 
+                            android:layout_height="wrap_content" 
+                            android:text=""
+                            android:layout_weight="0.5"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF"
+                        />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/arrowartist"
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4sp"
+                            android:paddingRight="2sp"
+                            android:paddingTop="3sp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/rightarrow"
+                        />
+
+                    </LinearLayout>
+
+                    <TextView  
+                        android:id="@+id/tedition"
+                        android:textStyle="bold"
+                        android:layout_width="fill_parent" 
+                        android:layout_height="wrap_content" 
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                    />
+
+                    <TextView  
+                        android:id="@+id/tgenre"
+                        android:textStyle="bold"
+                        android:layout_width="fill_parent" 
+                        android:layout_height="wrap_content" 
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                    />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        >
+
+                        <TextView  
+                            android:id="@+id/trating"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content" 
+                            android:text="@string/rating"
+                            android:paddingRight="4sp"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF"
+                        />
+
+                        <RatingBar
+                            android:id="@+id/rbar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4sp"
+                        />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_weight="0.5"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+
+                <WebView  
+                    android:id="@+id/blurb"
+                    android:layout_width="fill_parent" 
+                    android:layout_height="fill_parent" 
+                    android:text=""
+                    android:textSize="14sp"
+                />
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
