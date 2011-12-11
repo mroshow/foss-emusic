@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Droidian eMusic - a free eMusic app for Android - 
+    FOSS eMusic - a free eMusic app for Android - 
     https://launchpad.net/emusicdownloader - based loosely on the
     eMusicJ dekstop app (http://www.kallisti.net.nz/EMusicJ/HomePage).
     This application is not associated with eMusic.com in any way.  
@@ -25,7 +25,7 @@
 
 <resources>
     <!-- About Text -->
-    <string name="about_text">Update Nov. 21. eMusic.com update their website and broke downlaods in this app. Downloads have been disabled until I can reach out to eMusic and get a fix.\n\nThe Droidian eMusic application allows users to browse/search the eMusic.com collection and contains a download manager enabling current eMusic.com subcribers to download purchased albums/audiobooks/tracks directly to their Android phone.\n\nIf you are outside the US and often get the message that albums are not available in your region, please set your country code in the preferences.\n\nThis app is not in any way officially associated with eMusic.com. It is developed by one developer. If you like it, use it often, and want to show your appreciation, please consider buying the supporter version of the application!\n\nTo use Droidian eMusic, you should search or browse for an album/audiobook you want to download within the app. Press on the buy button on an album page to open a webview window for that album, sign in to your eMusic account (allow the webview to save your login credentials) and then press on a download link to download the album or track of interest using the included download manager. Note, you must be an eMusic.com subscriber with sufficient credits for any purchase you try to make. Downloaded tracks are automatically added to the Android music player library.\n\nTracks remain in the download manager until you clear them by pressing menu and selecting \"Clear Completed\". Note that downloads do expire after 24 hours - requiring you to start the download process again by repurchasing (unfortunately eMusic no longer allows you to redownload an album for free).\n\nWhat to do if your download fails?\n\nLong press on the track in the download manager list that has failed and select \"retry\" then press the download button at the top to restart the downloads. If you accidentally cleared the downloads, press the Menu button in the download manager and then press \".emx files\" to reload your purchased album. If that fails, return to the \"emx files\" menu and press and hold on the .emx file for your album, select \"send\" and email the file and the album name to jdeslipandroid@gmail.com.\n\nIf we cannot resolve your issue, you must contact eMusic customer service at http://www.emusic.com/contact/index.html to ask for your credits to be restored.</string>
+    <string name="about_text">Update Nov. 21. eMusic.com update their website and broke downlaods in this app. Downloads have been disabled until I can reach out to eMusic and get a fix.\n\nThe FOSS eMusic application allows users to browse/search the eMusic.com collection and contains a download manager enabling current eMusic.com subcribers to download purchased albums/audiobooks/tracks directly to their Android phone.\n\nIf you are outside the US and often get the message that albums are not available in your region, please set your country code in the preferences.\n\nThis app is not in any way officially associated with eMusic.com. It is developed by one developer. If you like it, use it often, and want to show your appreciation, please consider buying the supporter version of the application!\n\nTo use FOSS eMusic, you should search or browse for an album/audiobook you want to download within the app. Press on the buy button on an album page to open a webview window for that album, sign in to your eMusic account (allow the webview to save your login credentials) and then press on a download link to download the album or track of interest using the included download manager. Note, you must be an eMusic.com subscriber with sufficient credits for any purchase you try to make. Downloaded tracks are automatically added to the Android music player library.\n\nTracks remain in the download manager until you clear them by pressing menu and selecting \"Clear Completed\". Note that downloads do expire after 24 hours - requiring you to start the download process again by repurchasing (unfortunately eMusic no longer allows you to redownload an album for free).\n\nWhat to do if your download fails?\n\nLong press on the track in the download manager list that has failed and select \"retry\" then press the download button at the top to restart the downloads. If you accidentally cleared the downloads, press the Menu button in the download manager and then press \".emx files\" to reload your purchased album. If that fails, return to the \"emx files\" menu and press and hold on the .emx file for your album, select \"send\" and email the file and the album name to jdeslipandroid@gmail.com.\n\nIf we cannot resolve your issue, you must contact eMusic customer service at http://www.emusic.com/contact/index.html to ask for your credits to be restored.</string>
 
     <!-- Strings For WebWindow -->
     <string name="please_wait_for_page_to_refresh">Please wait for page to refresh before attempting another download.</string>
@@ -83,7 +83,7 @@
     <string name="cancel_current_downloads">Cancel Current Downloads</string>
     <string name="really_quit">Really Quit?  This will end all current and pending downloads. Press the Home button instead to keep running in the background.</string>
     <string name="already_connected">Already Connected</string>
-    <string name="no_storage">There doesn\'t appear to be an sdcard mounted at /sdcard or internal storage at /emmc.  \n\nDroidian eMusic has no location to save files.  This is one sad Robot.</string>
+    <string name="no_storage">There doesn\'t appear to be an sdcard mounted at /sdcard or internal storage at /emmc.  \n\nFOSS eMusic has no location to save files.  This is one sad Robot.</string>
     <string name="no_storage_available">No Storage Available</string>
     <string name="preferences_changed">You need to pause and restart the downloads for changes in filename/directory preferences to take effect.</string>
     <string name="loading_emx_please_wait_">Loading download info. Please Wait.</string>
@@ -122,7 +122,7 @@
     <string name="failed_to_update_chart_info">Failed to update chart info. Either no network connection or API down.</string>
     <string name="cleared_cache">Cleared chart and album art cache.</string>
     <string name="database_locked">Database is currently locked. Please try again in a few seconds.</string>
-    <string name="about_droidian_emusic">About Droidian eMusic</string>
+    <string name="about_foss_emusic">About FOSS eMusic</string>
     <string name="top_books">Top Books</string>
     <string name="top_artists">Top Artists</string>
     <string name="top_albums">Top Albums</string>
@@ -141,9 +141,9 @@
     <string name="downloads_killed">EMusicDroid downloads were killed by the Android OS (probably due to low memory on the device).  Please restart manually.</string>
 
     <!-- Other Strings For App -->
-    <string name="app_name">Droidian eMusic</string>
-    <string name="notif_short">Droidian eMusic</string>
-    <string name="notif_detailed">Droidian eMusic</string>
+    <string name="app_name">FOSS eMusic</string>
+    <string name="notif_short">FOSS eMusic</string>
+    <string name="notif_detailed">FOSS eMusic</string>
     <string name="quit">Quit</string>
     <string name="cancel">Cancel</string>
     <string name="loading_pbar">\ loading</string>

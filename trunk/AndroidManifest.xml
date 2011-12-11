@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Droidian eMusic - a free eMusic app for Android - 
+    FOSS eMusic - a free eMusic app for Android - 
     https://launchpad.net/emusicdownloader.
     This application is not associated with eMusic.com in any way.  
     
@@ -27,7 +27,7 @@
     android:icon="@drawable/icon"
     android:installLocation="auto"
     android:versionCode="196"
-    android:versionName="3.0.2">
+    android:versionName="3.1.0">
 
     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11" />
 

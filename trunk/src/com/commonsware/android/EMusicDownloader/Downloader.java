@@ -1,5 +1,5 @@
 /*
-    Droidian eMusic - a free eMusic app for Android
+    FOSS eMusic - a free eMusic app for Android
     This application is not associated with eMusic.com in any way.
 
     Copyright (C) 2010 Jack Deslippe

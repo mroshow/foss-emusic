@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Droidian eMusic - a free eMusic app for Android - 
+    FOSS eMusic - a free eMusic app for Android - 
     https://launchpad.net/emusicdownloader - based loosely on the
     eMusicJ dekstop app (http://www.kallisti.net.nz/EMusicJ/HomePage).
     This application is not associated with eMusic.com in any way.  
@@ -104,6 +104,14 @@
       <item>2</item>
       <item>3</item>
       <item>4</item>
+    </string-array>
+    <string-array name="mountdirtext">
+      <item>Default</item>
+      <item>Custom</item>
+    </string-array>
+    <string-array name="mountdirvalues">
+      <item>1</item>
+      <item>2</item>
     </string-array>
 
 </resources>

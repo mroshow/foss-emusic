@@ -59,20 +59,33 @@
       android:summary="Change the downloaded music file directory."
       android:entries="@array/filedirtext"
       android:entryValues="@array/filedirvalues"
-      android:dialogTitle="Choose directory (relative to /sdcard or /emmc)." />
+      android:dialogTitle="Choose directory (relative to mount point (usually /sdcard))." />
     <ListPreference
       android:key="bookdirlist"
       android:title="Audiobook File Directory"
       android:summary="Change the downloaded audiobook file directory."
       android:entries="@array/bookdirtext"
       android:entryValues="@array/bookdirvalues"
-      android:dialogTitle="Choose directory (relative to /sdcard or /emmc)." />
+      android:dialogTitle="Choose directory (relative to mount point (usually /sdcard))." />
     <EditTextPreference
       android:key="customdirname"
       android:title="Custom Directory"
       android:defaultValue="eMusic"
       android:summary="Specify the '/Custom' directory name to use in the above settings. If the directory doesn't exist, it will be created."
       android:dialogTitle="Enter a the custom directory name." />
+    <ListPreference
+      android:key="mountdirlist"
+      android:title="Mountpoint Directory"
+      android:summary="For advanced users only! Change the root directory from default."
+      android:entries="@array/mountdirtext"
+      android:entryValues="@array/mountdirvalues"
+      android:dialogTitle="Choose mount point." />
+    <EditTextPreference
+      android:key="custommountname"
+      android:title="Custom Mountpoint"
+      android:defaultValue="/sdcard"
+      android:summary="Specify the '/Custom' directory name as external storage mount point. If the directory doesn't exist, this will cause problems!"
+      android:dialogTitle="Enter a custom mount point." />
   </PreferenceCategory>
   <PreferenceCategory
     android:title="Temporary Files">

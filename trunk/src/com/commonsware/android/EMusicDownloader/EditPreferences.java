@@ -1,5 +1,5 @@
 /*
-    Droidian eMusic - a free eMusic app for Android
+    FOSS eMusic - a free eMusic app for Android
     This application is not associated with eMusic.com in any way.
     Copyright (C) 2010 Jack Deslippe
 
@@ -71,7 +71,7 @@ public class EditPreferences extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 
-                String storageRoot = Utils.getStorageDirectory();
+                String storageRoot = Utils.getStorageDirectory(thisActivity);
 
                 if (storageRoot != null){
                     try {

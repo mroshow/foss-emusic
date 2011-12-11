@@ -1,5 +1,5 @@
 /*
-    Droidian eMusic - a free eMusic app for Android
+    FOSS eMusic - a free eMusic app for Android
     This application is not associated with eMusic.com in any way.
 
     Copyright (C) 2010 Jack Deslippe
@@ -49,48 +49,74 @@ public class Utils {
         catch(Exception ex){}
     }
 
-    public static String getStorageDirectory() {
+    public static String getStorageDirectory(Context ctx) {
 
         // Discover if there is an sdcard or emmc internal storage or neither
         Boolean vStorage = false;
         String storageRoot=null;
 
-        String msdir = ""+Environment.getExternalStorageDirectory()+"/emxfiles/";
-        File mdir = new File (msdir);
-        mdir.mkdir();
-        if (mdir.exists()) {
-            storageRoot=Environment.getExternalStorageDirectory()+"/emxfiles";
-            File emxdir = new File(storageRoot);
-            emxdir.mkdir();
-            vStorage=true;
-        } else {
-            File sddir = new File("/sdcard/emxfiles");
-            sddir.mkdir();
-            if (sddir.exists()) {
-                storageRoot="/sdcard/emxfiles";
+        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(ctx);
+
+        int iMountDirPref=Integer.parseInt(prefs.getString("mountdirlist", "1"));
+        Log.d("EMD","Mount preference "+iMountDirPref);
+
+        if ( iMountDirPref != 1) {
+            String customMountDirectoryPref=prefs.getString("custommountname", "/sdcard");
+            Log.d("EMD","Mount custom "+customMountDirectoryPref);
+            String msdir = ""+customMountDirectoryPref+"/emxfiles/";
+            File mdir = new File (msdir);
+            mdir.mkdir();
+            if (mdir.exists()) {
+                storageRoot=Environment.getExternalStorageDirectory()+"/emxfiles";
+                File emxdir = new File(storageRoot);
+                emxdir.mkdir();
+                vStorage=true;
+                Log.d("EMD","Successfully created "+msdir);
+            } else {
+                Log.d("EMD","Unable to create "+msdir);
+            }
+        }
+
+        if (!vStorage) {
+ 
+            String msdir = ""+Environment.getExternalStorageDirectory()+"/emxfiles/";
+            File mdir = new File (msdir);
+            mdir.mkdir();
+            if (mdir.exists()) {
+                storageRoot=Environment.getExternalStorageDirectory()+"/emxfiles";
                 File emxdir = new File(storageRoot);
                 emxdir.mkdir();
                 vStorage=true;
             } else {
-                File emdir = new File("/emmc/emxifiles");
-                emdir.mkdir();
-                if (emdir.exists()) {
-                    storageRoot="/emmc/emxfiles";
+                File sddir = new File("/sdcard/emxfiles");
+                sddir.mkdir();
+                if (sddir.exists()) {
+                    storageRoot="/sdcard/emxfiles";
                     File emxdir = new File(storageRoot);
                     emxdir.mkdir();
                     vStorage=true;
                 } else {
-                    emdir = new File("/media/emxfiles");
+                    File emdir = new File("/emmc/emxifiles");
                     emdir.mkdir();
                     if (emdir.exists()) {
-                        storageRoot="/media/emxfiles";
+                        storageRoot="/emmc/emxfiles";
                         File emxdir = new File(storageRoot);
                         emxdir.mkdir();
                         vStorage=true;
+                    } else {
+                        emdir = new File("/media/emxfiles");
+                        emdir.mkdir();
+                        if (emdir.exists()) {
+                            storageRoot="/media/emxfiles";
+                            File emxdir = new File(storageRoot);
+                            emxdir.mkdir();
+                            vStorage=true;
+                        }
                     }
                 }
             }
         }
+
         if (vStorage) {
             return storageRoot;
         } else {
@@ -178,7 +204,7 @@ public class Utils {
             tempdirstring = customFileDirectoryPref;
         }
 
-        String storageRoot = Utils.getStorageDirectory();
+        String storageRoot = Utils.getStorageDirectory(ctx);
         Log.d("EMD - ","storageRoot "+storageRoot);
 
         if (storageRoot != null){
