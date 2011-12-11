@@ -67,7 +67,7 @@ public class Utils {
             File mdir = new File (msdir);
             mdir.mkdir();
             if (mdir.exists()) {
-                storageRoot=Environment.getExternalStorageDirectory()+"/emxfiles";
+                storageRoot=customMountDirectoryPref+"/emxfiles";
                 File emxdir = new File(storageRoot);
                 emxdir.mkdir();
                 vStorage=true;
