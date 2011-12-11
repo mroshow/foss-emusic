@@ -1,5 +1,5 @@
 /*
-    Droidian eMusic - a free eMusic app for Android
+    FOSS eMusic - a free eMusic app for Android
     This application is not associated with eMusic.com in any way.
 
     Copyright (C) 2010 Jack Deslippe
@@ -416,7 +416,7 @@ public class MainWindow extends Activity implements AdapterView.OnItemClickListe
                 }
             };
 
-            dialog.setTitle(R.string.about_droidian_emusic);
+            dialog.setTitle(R.string.about_foss_emusic);
             dialog.addContentView(scwv, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
             dialog.show();
             return(true);
