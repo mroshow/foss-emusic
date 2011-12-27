@@ -458,9 +458,16 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
                         URL u = new URL(sampleAddresses[fposition]);
                         HttpURLConnection c = (HttpURLConnection) u.openConnection();
     	                c.setRequestMethod("GET");
-       	                c.setDoOutput(true);
+       	                //c.setDoOutput(true);
+                        c.setFollowRedirects(true);
+                        c.setInstanceFollowRedirects(true);
                         c.connect();
+
+                        Log.d("EMD","Set up URL connection "+sampleAddresses[fposition]);
+
                         InputStream in = c.getInputStream();
+
+                        Log.d("EMD","Set up InputStream "+sampleAddresses[fposition]);
 
                         Boolean vSample=false;
 
@@ -520,7 +527,7 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
                         }
 
                     } catch (Exception ef) {
-                        Log.e("EMD - ","Getting sample mp3 address failed ");
+                        Log.e("EMD - ","Getting sample mp3 address failed "+ef);
                         if (dialog.isShowing()) {
                             dialog.dismiss();
                             vPlayAllSamples = false;
@@ -847,6 +854,21 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
     public void onDestroy() {
         super.onDestroy();
         vKilled=true;
+        //Log.d("EMD Album - ", "Destroyed");
+    }
+
+    // Destroy our taskbar notification icon when the program is closed
+    @Override
+    public void onStop() {
+        super.onStop();
+        vKilled=true;
+        //Log.d("EMD Album - ", "Destroyed");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vKilled=false;
         //Log.d("EMD Album - ", "Destroyed");
     }
 

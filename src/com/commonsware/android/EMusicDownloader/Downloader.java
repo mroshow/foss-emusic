@@ -311,6 +311,8 @@ public class Downloader extends Service {
                                        }
                                    }
 
+                                   Log.d("EMD","Download Process: vPartial "+vPartial);
+
                                    if (trackStatus[ifile] > 9 && trackStatus[ifile]%2 == 0) {
                                        trackStatus[ifile]++;
                                        updateDB(ifile);
@@ -318,15 +320,27 @@ public class Downloader extends Service {
 
                                    URL currentTrackURL = new URL(trackURLs[ifile]);
                                    HttpURLConnection currentTrackConnection = (HttpURLConnection) currentTrackURL.openConnection();
+
                                    if (vPartial) {
+                                      Log.d("EMD","Partial Download "+itmp);
                                        currentTrackConnection.addRequestProperty("Range", "bytes=" + itmp + "-");
                                    }
+
+                                   Log.d("EMD","Set Up HttpURLConnection z"+trackURLs[ifile]+"z");
+
                                    currentTrackConnection.setRequestMethod("GET");
-                                   currentTrackConnection.setDoOutput(true);
+                                   //currentTrackConnection.setDoOutput(true);
+                                   currentTrackConnection.setFollowRedirects(true);
+                                   currentTrackConnection.setInstanceFollowRedirects(true);
                                    currentTrackConnection.connect();
+
+                                   Log.d("EMD","Set Up TrackConnection");
+
                                    long itfs = 0;
                                    itfs = currentTrackConnection.getContentLength();
-                                   Log.d("EMD - ","CONTENT LENGTH "+itfs);
+
+                                   Log.d("EMD - ","Content Length "+itfs);
+
                                    if (itfs == -1) {
                                        currentTrackConnection.disconnect();
                                        currentTrackConnection = (HttpURLConnection) currentTrackURL.openConnection();
@@ -334,7 +348,7 @@ public class Downloader extends Service {
                                            currentTrackConnection.addRequestProperty("Range", "bytes=" + itmp + "-");
                                        }
                                        currentTrackConnection.setRequestMethod("GET");
-                                       currentTrackConnection.setDoOutput(true);
+                                       //currentTrackConnection.setDoOutput(true);
                                        currentTrackConnection.connect();
                                        itfs = currentTrackConnection.getContentLength();
                                    }
@@ -347,6 +361,8 @@ public class Downloader extends Service {
                                    }
                                    final long ifs = itfs + itmp;
 
+                                   Log.d("EMD - ","Setup Output Stream ");
+
                                    if (EMD != null) {
                                        EMD.statusTextView.post(new Runnable() {
                                            public void run() {
@@ -355,11 +371,15 @@ public class Downloader extends Service {
                                        });
                                    }
 
-                                   final long jfs = ifs*100/1024/1024;
-                                   final double rfs = (double) jfs/100.0;
                                    InputStream in = currentTrackConnection.getInputStream();
 
+                                   Log.d("EMD - ","Setup Input Stream ");
+
+                                   final long jfs = ifs*100/1024/1024;
+                                   final double rfs = (double) jfs/100.0;
+
                                    Boolean vmarkable=in.markSupported();
+
                                    Log.d("EMD - ","Is it markable: "+vmarkable);
 
                                    byte[] buffer = new byte[1024];

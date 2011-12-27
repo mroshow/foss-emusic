@@ -382,7 +382,9 @@ public class SingleBook extends Activity {
                         URL u = new URL(sampleURL);
                         HttpURLConnection c = (HttpURLConnection) u.openConnection();
     	                c.setRequestMethod("GET");
-                        c.setDoOutput(true);
+                        //c.setDoOutput(true);
+                        c.setFollowRedirects(true);
+                        c.setInstanceFollowRedirects(true);
                         c.connect();
        	                InputStream in = c.getInputStream();
 
