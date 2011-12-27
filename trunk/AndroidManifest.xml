@@ -26,8 +26,8 @@
     package="com.commonsware.android.EMusicDownloader"
     android:icon="@drawable/icon"
     android:installLocation="auto"
-    android:versionCode="196"
-    android:versionName="3.1.0">
+    android:versionCode="198"
+    android:versionName="3.1.2">
 
     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11" />
 

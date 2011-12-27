@@ -48,7 +48,7 @@ public class WebWindow extends Activity {
 
     private Activity thisActivity;
 
-    private WebView webby;
+    public WebView webby;
     
     private String myURL;
     private Boolean vLoaded = false;
@@ -56,6 +56,11 @@ public class WebWindow extends Activity {
     // ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,Gravity.BOTTOM);
     private emuDB droidDB;
     private downloadDB droidHisDB;
+
+    private Boolean vMP3 = false;
+    private Boolean vWarned = false;
+
+    public Boolean vBrowse = false;
 
     /** Called when the activity is first created. */
     @Override
@@ -146,6 +151,7 @@ public class WebWindow extends Activity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
             Log.d("EMD URL -",url);
+            Log.d("Dumb Test",url);
 
             //For Debug Version - Send eMail with info
             //Toast.makeText(thisActivity, "Loading URL "+url,
@@ -196,12 +202,15 @@ public class WebWindow extends Activity {
             } else if ((url.contains(".mp3")) || url.contains("?rn=")) {
                 //WebSettings websettings = webby.getSettings();
                 //websettings.setJavaScriptEnabled(false);
+                Log.d("EMD","mp3 URL");
                 setProgressBarIndeterminateVisibility(true);
                 Log.d("EMD","URL contains mp3");
+                vMP3 = true;
                 view.loadUrl("https://www.emusic.com/security/signon.html");
                 return true;
             } else if (url.contains("security/success") || url.equals("https://www.emusic.com/")) {
                 long currenttime = System.currentTimeMillis();
+                Log.d("EMD","Security Success URL");
 
                 droidDB = new emuDB(thisActivity);
                 try {
@@ -213,20 +222,76 @@ public class WebWindow extends Activity {
 
                 //WebSettings websettings = webby.getSettings();
                 //websettings.setJavaScriptEnabled(true);
-                //setProgressBarIndeterminateVisibility(true);
-                //view.loadUrl(myURL);
-                return false;
+                setProgressBarIndeterminateVisibility(true);
+                //downloadManagerWarn(view);
+                return true;
             } else if ((url.contains("registration"))) {
                 //WebSettings websettings = webby.getSettings();
                 //websettings.setJavaScriptEnabled(true);
-                setProgressBarIndeterminateVisibility(true);
-                return false;
+                Log.d("EMD","We have registration");
+                if (url.contains("1.html")) {
+                    setProgressBarIndeterminateVisibility(true);
+                    vMP3 = true;
+                    view.loadUrl("https://www.emusic.com/security/signon.html");
+                    Log.d("EMD","We have registration redirect");
+                    return true;
+                } else {
+                    setProgressBarIndeterminateVisibility(true);
+                    return false;
+                }
             } else {
                 //WebSettings websettings = webby.getSettings();
                 //websettings.setJavaScriptEnabled(true);
+                Log.d("EMD","Page is not special.");
                 setProgressBarIndeterminateVisibility(true);
                 return false;
             }
+        }
+
+        public void mp3Download(String url2) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url2));
+            startActivity(i);
+        }
+
+        public void mp3Warning(String url) {
+            final  String url2 = url;
+            new AlertDialog.Builder(thisActivity)
+             .setTitle("Download Manager Disabled?")
+             .setMessage("An mp3 file was sent without launching the download manager. Please enable the download manager in your emusic.com settings. You can see this setting under Profile->Account->\"Download Manager Settings.\". We are attempting to download through browser.")
+             .setPositiveButton("Attempt to Open", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                     mp3Download(url2);
+                 }
+            //}).setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
+            //    @Override
+            //    public void onClick(DialogInterface dialog, int which) {
+            //        // Do Nothing
+            //    }
+            }).show();
+        }
+
+        public void downloadManagerWarn(WebView view) {
+
+            final WebView view2 = view;
+
+            new AlertDialog.Builder(thisActivity)
+             .setTitle("Enable Download Manager")
+             .setMessage("Before attempting a purchase: Please make sure you have the download manager enabled in your emusic.com settings. You can see this setting under Profile->Account->\"Download Manager Settings.\"")
+             .setPositiveButton("Go to Settings", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                    view2.loadUrl("https://www.emusic.com/account/download.html");
+                 }
+            }).setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (!vBrowse) {
+                        view2.loadUrl(myURL);
+                    }
+                }
+            }).show();
         }
 
         public void onPageFinished(WebView view, String url) {
@@ -234,6 +299,22 @@ public class WebWindow extends Activity {
             setProgressBarIndeterminateVisibility(false);
             //WebSettings websettings = webby.getSettings();
             //websettings.setJavaScriptEnabled(false);
+            if (url.contains("security/success")) {
+                long currenttime = System.currentTimeMillis();
+
+                droidDB = new emuDB(thisActivity);
+                try {
+                    droidDB.updateCookietime(currenttime);
+                } catch (Exception eff) {
+                    Log.e("EMD - ","Failed to update cookietime");
+                }
+                droidDB.close();
+
+                //if (vMP3) {
+                    vMP3 = false;
+                    downloadManagerWarn(view);
+                //}
+            }
         }
 
         public void startDownload(String url) {
@@ -305,6 +386,17 @@ public class WebWindow extends Activity {
             if (url.contains(".emx") && url.contains("/download")) {
                 startDownload(url);
             }
+            if (url.endsWith(".mp3")) {
+                Log.d("EMD","BAD BAD BAD "+url);
+                //if (!vWarned) {
+                    vWarned = true;
+                    mp3Download(url);
+                    Toast.makeText(thisActivity,"An mp3 file was sent without the download manager. Please enable the download manager in your emusic.com settings.",
+                     Toast.LENGTH_SHORT).show();
+                //} else {
+                //    mp3Download(url);
+                //}
+            }
         }
 
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -327,11 +419,11 @@ public class WebWindow extends Activity {
         super.onResume();
 
         Log.d("EMD - ","WW Resume "+vLoaded);
-        if (vLoaded) {
-            webby.reload();
-            Toast.makeText(thisActivity, R.string.please_wait_for_page_to_refresh,
-             Toast.LENGTH_SHORT).show();
-        }
+        //if (vLoaded) {
+        //    webby.reload();
+        //    Toast.makeText(thisActivity, R.string.please_wait_for_page_to_refresh,
+        //     Toast.LENGTH_SHORT).show();
+        //}
         vLoaded=true;
     }
 
