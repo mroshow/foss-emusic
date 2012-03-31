@@ -56,9 +56,9 @@ public class XMLHandlerSingleAlbum extends DefaultHandler{
     public String releaseDate = "";
     public String imageURL = "";
     public String[] tracks;
-    public String[] sampleAddress;
-    public Boolean[] sampleExists;
-    public Boolean samplesExist=false;
+    //public String[] sampleAddress;
+    //public Boolean[] sampleExists;
+    //public Boolean samplesExist=false;
 
     // Methods
 
@@ -86,8 +86,8 @@ public class XMLHandlerSingleAlbum extends DefaultHandler{
             if (numberOfDiscs > 1) {
                 nItems=nTotalItems;
                 tracks = new String[nItems];
-                sampleAddress = new String[nItems];
-                sampleExists = new Boolean[nItems];
+                //sampleAddress = new String[nItems];
+                //sampleExists = new Boolean[nItems];
             }
         } else if (localName.equals("label")) {
             label=atts.getValue("name");
@@ -105,21 +105,21 @@ public class XMLHandlerSingleAlbum extends DefaultHandler{
             if (numberOfDiscs == 1) {
                 nItems=Integer.parseInt(atts.getValue("size"));
                 tracks = new String[nItems];
-                sampleAddress = new String[nItems];
-                sampleExists = new Boolean[nItems];
+                //sampleAddress = new String[nItems];
+                //sampleExists = new Boolean[nItems];
             }
             in_tracks = true;
         } else if (localName.equals("track")) {
             tracks[iCounter]=atts.getValue("name");
-            sampleAddress[iCounter]=atts.getValue("sample");
-            sampleExists[iCounter]=false;
-            sampleExists[iCounter]=Boolean.parseBoolean(atts.getValue("sampleAvailable"));
-	    if (sampleAddress[iCounter].contains("m3u")) {
-                sampleExists[iCounter] = true;
-	    }
-	    if (sampleExists[iCounter]) {
-                samplesExist=true;
-            }
+            //sampleAddress[iCounter]=atts.getValue("sample");
+            //sampleExists[iCounter]=false;
+            //sampleExists[iCounter]=Boolean.parseBoolean(atts.getValue("sampleAvailable"));
+	    //if (sampleAddress[iCounter].contains("m3u")) {
+            //    sampleExists[iCounter] = true;
+	    //}
+	    //if (sampleExists[iCounter]) {
+            //    samplesExist=true;
+            //}
             iCounter++;
         } else if (localName.equals("communityRating")) {
             rating=atts.getValue("average");
