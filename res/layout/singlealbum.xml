@@ -239,6 +239,7 @@
         android:paddingTop="4sp"
         >
 
+        <!--
         <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/samplebutton"
             android:onClick="sampleButtonPressed"
@@ -249,6 +250,7 @@
             android:clickable="true" 
             android:visibility="invisible" 
         />
+        -->
 
         <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/reviewsbutton"

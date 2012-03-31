@@ -76,7 +76,7 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
     
     //UI-Views
     private ImageView reviewsButton;
-    private ImageView sampleButton;
+    //private ImageView sampleButton;
     private ImageView albumArt;
     private TextView nameTextView;
     private TextView artistTextView;
@@ -108,13 +108,13 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
     private String emusicURL;
     private String imageURL;
     private String[] trackNames;
-    private String[] sampleAddresses;
-    private Boolean[] sampleExists;
+    //private String[] sampleAddresses;
+    //private Boolean[] sampleExists;
     private Boolean vSamplesExist=false;
     private Boolean vArtExists=false;
     private Boolean vKilled=false;
     private Boolean vLoaded=false;
-    private Boolean vPlayAllSamples=false;
+    //private Boolean vPlayAllSamples=false;
     private Bitmap albumArtBitmap;
 
     /** Called when the activity is first created. */
@@ -164,7 +164,7 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
 
         albumArt=(ImageView)findViewById(R.id.albumart);
         reviewsButton=(ImageView)findViewById(R.id.reviewsbutton);
-        sampleButton=(ImageView)findViewById(R.id.samplebutton);
+        //sampleButton=(ImageView)findViewById(R.id.samplebutton);
         trackList=(ListView)findViewById(R.id.trklist);
         ratingBar=(RatingBar)findViewById(R.id.rbar);
         trackList.setOnItemClickListener(this);
@@ -219,9 +219,9 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
 
                     numberOfTracks = myXMLHandler.nItems;
                     trackNames = myXMLHandler.tracks;
-                    sampleAddresses = myXMLHandler.sampleAddress;
-                    sampleExists = myXMLHandler.sampleExists;
-                    vSamplesExist = myXMLHandler.samplesExist;
+                    //sampleAddresses = myXMLHandler.sampleAddress;
+                    //sampleExists = myXMLHandler.sampleExists;
+                    //vSamplesExist = myXMLHandler.samplesExist;
 
                     handlerSetContent.sendEmptyMessage(0);
                     dialog.dismiss();
@@ -291,14 +291,14 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
             } catch (Exception ef2) {
             }
 
-            if (vSamplesExist) {
-                trackList.setAdapter(new ArrayAdapter<String>(thisActivity,
-                 R.layout.tracklistplay_item, R.id.text,trackNames));
-                sampleButton.setVisibility(0);
-            } else {
+            //if (vSamplesExist) {
+            //    trackList.setAdapter(new ArrayAdapter<String>(thisActivity,
+            //     R.layout.tracklistplay_item, R.id.text,trackNames));
+            //    sampleButton.setVisibility(0);
+            //} else {
                 trackList.setAdapter(new ArrayAdapter<String>(thisActivity,
                  R.layout.item, R.id.label,trackNames));
-            }
+            //}
         }
     };
 
@@ -318,13 +318,13 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
         while (t1 - t0 < n);
     }
 
-    public void sampleButtonPressed(View button) {
-        //Toast.makeText(thisActivity, R.string.album_sample,
-        // Toast.LENGTH_LONG).show();
-        vPlayAllSamples = true;
-        samplePlayPosition = 0;
-        startSamplePlayback();
-    }
+    //public void sampleButtonPressed(View button) {
+    //    //Toast.makeText(thisActivity, R.string.album_sample,
+    //    // Toast.LENGTH_LONG).show();
+    //    vPlayAllSamples = true;
+    //    samplePlayPosition = 0;
+    //    startSamplePlayback();
+    //}
 
     public void buyButtonPressed(View button) {
         Intent myIntent = new Intent(this,WebWindow.class);
@@ -433,422 +433,6 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
         return bm;
     }
 
-    //Attempt to get sample mp3 address from m3u file when item is clicked
-    public void onItemClick(AdapterView<?> a, View v, int position,long id) {
-        samplePlayPosition = position;
-        startSamplePlayback();
-    }
-
-    private void startSamplePlayback() {
-
-        int position = samplePlayPosition;
-
-        if (sampleExists[position]) {
-
-            final int fposition = position;
-            final ProgressDialog dialog = ProgressDialog.show(this, "", ""+(samplePlayPosition+1)+". "+getString(R.string.getting_sample_loation), true, true);
-
-            Thread t5 = new Thread() {
-                public void run() {
-
-                    String addresstemp="";
-                    String debugText = "";
-
-                    try {
-                        URL u = new URL(sampleAddresses[fposition]);
-                        HttpURLConnection c = (HttpURLConnection) u.openConnection();
-    	                c.setRequestMethod("GET");
-       	                //c.setDoOutput(true);
-                        c.setFollowRedirects(true);
-                        c.setInstanceFollowRedirects(true);
-                        c.connect();
-
-                        Log.d("EMD","Set up URL connection "+sampleAddresses[fposition]);
-
-                        InputStream in = c.getInputStream();
-
-                        Log.d("EMD","Set up InputStream "+sampleAddresses[fposition]);
-
-                        Boolean vSample=false;
-
-                        InputStreamReader inputReader = new InputStreamReader(in);
-                        BufferedReader buffReader = new BufferedReader(inputReader);
-
-                        String line;
-
-                        //if (true) {
-                        //    Message handlermsg = new Message();
-                        //    debugText = "Attempting to get mp3 address from m3u - "+sampleAddresses[fposition];
-                        //    handlermsg.obj = debugText;
-                        //    handlerToast.sendMessage(handlermsg);
-                        //}
-
-                        // read every line of the file into the line-variable, on line at the time
-                        //while (( line = buffreader.readLine()).length() > 0) {
-                        while (( line = buffReader.readLine()) != null) {
-
-                            debugText = debugText + "\n"+line;
-
-                            if (line.contains(".mp3") || line.contains("samples.emusic") || line.contains("samples.nl.emusic")) {
-                            //if (false) {
-                                vSample=true;
-                                addresstemp=line;
-                                mp3Address = addresstemp;
-                                currentPlayingTrack = trackNames[fposition];
-                                if (!vKilled && dialog.isShowing()) {
-                                    handlerPlay.sendEmptyMessage(0);
-                                }
-                                if (dialog.isShowing()) {
-                                    dialog.dismiss();
-                                }
-                            }
-                        }
-
-                        in.close();
-                        c.disconnect();
-
-                        if (dialog.isShowing()) {
-                            if (true && !vSample) {
-                                Message handlermsg = new Message();
-                                String ttext = getString(R.string.could_not_get_an_address_for_sample);
-                                handlermsg.obj = ttext;
-                                handlerToast.sendMessage(handlermsg);
-
-                                //For Debug Version - Send eMail with info
-                                //Intent i = new Intent(android.content.Intent.ACTION_SEND);
-                                //i.setType("text/plain");
-                                //i.putExtra(Intent.EXTRA_SUBJECT, "eMusic Debugging Info");
-                                //i.putExtra(Intent.EXTRA_TEXT, "Failed to find mp3 address\n"+debugText);
-                                //startActivity(Intent.createChooser(i, "Please Send By eMail to jdeslip@gmail.com"));
-                                vPlayAllSamples = false;
-                            }
-                            dialog.dismiss();
-
-                        }
-
-                    } catch (Exception ef) {
-                        Log.e("EMD - ","Getting sample mp3 address failed "+ef);
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                            vPlayAllSamples = false;
-                        }
-
-                        //For Debug Version
-                        //Intent i = new Intent(android.content.Intent.ACTION_SEND);
-                        //i.setType("text/plain");
-                        //i.putExtra(Intent.EXTRA_SUBJECT, "eMusic Debugging Info");
-                        //i.putExtra(Intent.EXTRA_TEXT, "Finding sample caught exception\n"+debugText);
-                        //startActivity(Intent.createChooser(i, "Please Send By eMail to jdeslip@gmail.com"));
-                    }
-                }
-            };
-            t5.start();
-
-        } else {
-            Toast.makeText(thisActivity, R.string.no_sample_available,
-             Toast.LENGTH_SHORT).show();
-            vPlayAllSamples = false;
-        }
-
-    }
-
-    private Handler handlerNext = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (samplePlayPosition < (numberOfTracks-1) && vPlayAllSamples) {
-                samplePlayPosition++;
-                startSamplePlayback();
-            }
-            //Toast.makeText(thisActivity, "Next",
-            // Toast.LENGTH_SHORT).show();
-        }
-    };
-
-
-    //Creates a dialog and an embedded player for the sample
-    private Handler handlerPlay = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-
-            if (!vKilled) {
-                Dialog dialog = new Dialog(thisActivity) {
-
-                    Dialog thisDialog = this;
-                    
-                    //Dialog Views
-                    ScrollView dialogScrollView = new ScrollView(thisActivity);
-                    LinearLayout dialogLinLay = new LinearLayout(thisActivity);
-                    TextView sampleInfoTextView = new TextView(thisActivity);
-                    
-                    //Dialog Variables
-                    private MediaPlayer sampleMediaPlayer = new MediaPlayer();
-                    boolean vDownloaded;
-                    Thread t4;
-                    String storagePath;
-
-                    public boolean onKeyDown(int keyCode, KeyEvent event){
-                        if (keyCode == KeyEvent.KEYCODE_BACK) {
-                            Thread t7 = new Thread() {
-                                public void run() {
-                                    try {
-                                        t4.interrupt();
-                                    } catch ( Exception ef) {
-                                        Log.e("EMD - ","Cant stop thread");
-                                    }
-                                    try {
-                                        sampleMediaPlayer.stop();
-                                        sampleMediaPlayer.release();
-                                    } catch ( Exception ef) {
-                                        Log.e("EMD - ","Cant stop playback");
-                                    }
-                                }
-                            };
-                            t7.start();
-
-                            vPlayAllSamples=false;
-                            this.dismiss();
-                            return true;
-                        }
-                        return false;
-                    }
-
-                    public void startTimer() {
-                        Thread t4 = new Thread() {
-                            public void run() {
-
-                                try {
-                                    sleep(30000);
-                                } catch (Exception ef) {
-                                }
-                                try {
-                                    sampleMediaPlayer.stop();
-                                } catch ( Exception ef) {
-                                }
-                                try {
-                                    if (thisDialog.isShowing()) {
-                                        thisDialog.dismiss();
-                                        handlerNext.sendEmptyMessage(0);
-                                    }
-                                } catch ( Exception ef) {
-                                }
-
-                            }
-                        };
-                        t4.start();
-                    }
-
-                    public void downloadSample() {
-
-                        try {
-
-                            vDownloaded = false;
-                            waiting(100);
-
-                            sampleInfoTextView.post(new Runnable() {
-                                public void run() {
-                                    sampleInfoTextView.setText(""+(samplePlayPosition+1)+". "+getString(R.string.buffering));
-                                }
-                            });
-
-                            storagePath=Environment.getExternalStorageDirectory()+"/emxsamples";
-                            final String filePath=storagePath;
-                            final String fileName="lastsample.mp3";
-
-                            File futureDirectory = new File(filePath);
-                            futureDirectory.mkdir();
-
-                            if (futureDirectory.exists()) {
-                                //Log.d("EMD - ","Storage exists shouldn't toast");
-                            } else {
-                                throw new Exception();
-                            }
-
-                            File noMediaFile = new File(filePath+"/.nomedia");
-                            noMediaFile.createNewFile();
-
-                            try {
-                              File oldSampleFile = new File(Environment.getExternalStorageDirectory()+"/eMusic/lastsample.mp3");
-                              if (oldSampleFile.exists()) {
-                                oldSampleFile.delete();
-                              }
-                            } catch (Exception ef) {
-                            }
-
-                            File futureFile = new File(filePath,fileName);
-
-                            long itmp = 0;
-                            itmp = futureFile.length();
-
-                            URL u = new URL(mp3Address);
-                            HttpURLConnection mp3HttpConnection = (HttpURLConnection) u.openConnection();
-                            mp3HttpConnection.setRequestMethod("GET");
-                            mp3HttpConnection.setDoOutput(true);
-                            mp3HttpConnection.connect();
-                            long itfs = 0;
-                            itfs = mp3HttpConnection.getContentLength();
-                            Log.d("EMD - ","CONTENT LENGTH "+itfs);
-
-                            if (itfs == -1) {
-                                mp3HttpConnection.disconnect();
-                                mp3HttpConnection = (HttpURLConnection) u.openConnection();
-                                mp3HttpConnection.setRequestMethod("GET");
-                                mp3HttpConnection.setDoOutput(true);
-                                mp3HttpConnection.connect();
-                                itfs = mp3HttpConnection.getContentLength();
-                            }
-
-                            FileOutputStream bufferFile = new FileOutputStream(futureFile,false);
-                            final long ifs = itfs;
-                            final long jfs = ifs*100/1024/1024;
-
-                            Log.d("EMD - ","ifs "+ifs);
-
-                            InputStream in = mp3HttpConnection.getInputStream();
-
-                            long i = 0;
-                            byte[] buffer = new byte[1024];
-                            int len1 = 0;
-                            long jtprev=-1;
-
-                            while ( (len1 = in.read(buffer)) > 0 ) {
-                                if (vKilled || !thisDialog.isShowing()) {
-                                    break;
-                                }
-                                bufferFile.write(buffer,0,len1);
-                                i+=len1;
-                                long jt = 100*i/1024/1024;
-                                final double rfs = (double) jt/100.0;
-
-                                if (jt != jtprev) {
-                                    jtprev=jt;
-                                    final int j = (int) jt;
-                                    sampleInfoTextView.post(new Runnable() {
-                                        public void run() {
-                                            sampleInfoTextView.setText(""+(samplePlayPosition+1)+". "+getString(R.string.buffering)+" "+rfs+" "+getString(R.string.mb_3g_wifi_suggested_));
-                                        }
-                                    });
-                                }
-                            }
-                            bufferFile.close();
-                            vDownloaded=true;
-
-                        } catch (Exception eff) {
-                            Log.e("EMD - ",getString(R.string.cant_get_sample_)+eff);
-                            sampleInfoTextView.post(new Runnable() {
-                                public void run() {
-                                    sampleInfoTextView.setText(R.string.no_storage_to_buffer);
-                                }
-                            });
-
-                        }
-                    }
-
-                    public void show() {
-                        dialogLinLay.setOrientation(1);
-                        dialogLinLay.setPadding(16,0,16,16);
-                        dialogLinLay.addView(sampleInfoTextView);
-                        dialogScrollView.addView(dialogLinLay);
-
-                        this.setContentView(dialogScrollView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-                        super.show();
-
-                        MediaPlayer.OnPreparedListener listener = new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer mpin) {
-                                if (!vKilled && thisDialog.isShowing()) {
-                                    Thread t8 = new Thread() {
-                                        public void run() {
-                                            try {
-                                                sampleMediaPlayer.start();
-                                                startTimer();
-                                            } catch (Exception ef) {
-                                            }
-                                        }
-                                    };
-                                    t8.start();
-	                            sampleInfoTextView.setText(getString(R.string.now_playing)+" "+(samplePlayPosition+1)+". "+currentPlayingTrack+" "+getString(R.string._3g_wifi_suggested));
-                                }
-                            }
-                        };
-
-                        MediaPlayer.OnCompletionListener complistener = new MediaPlayer.OnCompletionListener() {
-                            public void onCompletion(MediaPlayer mpin) {
-                                Log.d("EMD - ","Completed");
-                                try {
-                                    sampleMediaPlayer.release();
-                                } catch (Exception ef) {
-                                }
-                                if (thisDialog.isShowing()) {
-                                    thisDialog.dismiss();
-                                    handlerNext.sendEmptyMessage(0);
-                                }
-                            }
-                        };
-
-                        MediaPlayer.OnErrorListener errorlistener = new MediaPlayer.OnErrorListener() {
-                            public boolean onError(MediaPlayer mpin,int what, int extra) {
-                                Log.e("EMD - ","Error");
-                                return true;
-                            }
-                        };
-
-                        MediaPlayer.OnInfoListener infolistener = new MediaPlayer.OnInfoListener() {
-                            public boolean onInfo(MediaPlayer mpin,int what, int extra) {
-                                Log.d("EMD - ","Info");
-                                return true;
-                            }
-                        };
-
-                        MediaPlayer.OnBufferingUpdateListener bufferlistener = new MediaPlayer.OnBufferingUpdateListener() {
-                            public void onBufferingUpdate(MediaPlayer mpin,int percent) {
-                                Log.d("EMD - ","Buffer "+percent);
-                            }
-                        };
-
-                        sampleMediaPlayer.setLooping(false);
-                        sampleMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        sampleMediaPlayer.setOnPreparedListener(listener);
-                        sampleMediaPlayer.setOnCompletionListener(complistener);
-                        sampleMediaPlayer.setOnErrorListener(errorlistener);
-                        sampleMediaPlayer.setOnInfoListener(infolistener);
-                        sampleMediaPlayer.setOnBufferingUpdateListener(bufferlistener);
-
-                        if (!vKilled && thisDialog.isShowing()) {
-                            Thread t12 = new Thread() {
-                                public void run() {
-                                    try {
-                                        downloadSample();
-                                        mp3Address="file:/"+storagePath+"/lastsample.mp3";
-                                        if (!vKilled && thisDialog.isShowing() && vDownloaded) {
-                                            File file = new File(storagePath+"/lastsample.mp3");
-                                            FileInputStream fis = new FileInputStream(file);
-                                            sampleMediaPlayer.setDataSource(fis.getFD());
-	                                    sampleMediaPlayer.prepareAsync();
-                                        }
-                                    } catch (Exception ef) {
-                                        Log.e("EMD - ","MediaPlayer Failed");
-                                    }
-                                }
-                            };
-                            t12.start();
-                        } else {
-                            try {
-                                sampleMediaPlayer.release();
-                            } catch (Exception ef) {
-                            }
-                        }
-
-                        Log.d("EMD - ","Starting Dialog");
-
-                    }
-                };
-
-                dialog.setTitle(R.string.audio_sample);
-                dialog.show();
-            }
-        }
-    };
-
     // Destroy our taskbar notification icon when the program is closed
     @Override
     public void onDestroy() {
@@ -916,7 +500,7 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
         ratingBar=(RatingBar)findViewById(R.id.rbar);
         trackList.setOnItemClickListener(this);
         reviewsButton=(ImageView)findViewById(R.id.reviewsbutton);
-        sampleButton=(ImageView)findViewById(R.id.samplebutton);
+        //sampleButton=(ImageView)findViewById(R.id.samplebutton);
 
         if (vLoaded) {
             handlerSetContent.sendEmptyMessage(0);
@@ -927,5 +511,9 @@ public class SingleAlbum extends Activity implements AdapterView.OnItemClickList
             }
         }
     }
+
+    public void onItemClick(AdapterView<?> a, View v, int position,long id) {
+    }
+
 
 }
